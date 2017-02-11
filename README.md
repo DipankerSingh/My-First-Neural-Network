@@ -1,6 +1,5 @@
-======================================
-## My First Neural Network 
-======================================
+## My First Neural Network ###
+
 In this project, I built a neural network from scratch to carry out a prediction problem 
 on a real dataset! By building a neural network from the ground up, now I have a much 
 better understanding of gradient descent, backpropagation and other concepts of NN.
@@ -8,12 +7,9 @@ better understanding of gradient descent, backpropagation and other concepts of 
 The data comes from the UCI Machine Learning Database.
 
 ==============================================================================
-***Problem Statement*** : Neural Network for predicting Bike Sharing Rides. Here NN will predict how many 
-bikes a company needs because if they have too few they are losing money from potential riders and if they have
-too many they are wasting money on bikes that are just sitting around. So NN will predict from the hisitorical 
-data how many bikes they will need in the near future. 
-==============================================================================
+**Problem Statement** : Neural Network for predicting Bike Sharing Rides. Here NN will predict how many bikes a company needs because if they have too few they are losing money from potential riders and if they have too many they are wasting money on bikes that are just sitting around. So NN will predict from the hisitorical data how many bikes they will need in the near future.
 
+#Network Description#
 The network has two layers, a hidden layer and an output layer. The hidden layer uses the sigmoid function 
 for activations. The output layer has only one node and is used for the regression, the output of the node is the 
 same as the input of the node. That is, the activation function is  f(x)=xf(x)=x . A function that takes the input 
@@ -26,45 +22,59 @@ propagate error backwards from the output back into the network to update our we
 ================================================================================
 #Hyperparameters:
 
-1) epochs = 5000
-2) learning_rate = 0.01
-3) hidden_nodes = 28
-4) output_nodes = 1
+1)epochs = 5000
+
+2)learning_rate = 0.01
+
+3)hidden_nodes = 28
+
+4)output_nodes = 1
 
 ================================================================================
 #Performance:
 
+![loss](https://cloud.githubusercontent.com/assets/15040734/22854061/84013ebe-f08b-11e6-8a5f-ce7186816b6e.jpg)
+
+![predictions](https://cloud.githubusercontent.com/assets/15040734/22854062/8401a08e-f08b-11e6-8de4-82831143cd2c.jpg)
  
 ===============================================================================
 
 #Take aways :
 
-1) Why Bias Term is Useful : 
+1)Why Bias Term is Useful? 
+
 At a very high level, it is the difference between y = mx and y = mx + c (where c is the bias term). The first equation 
 can only describe data where (0, 0) is part of the dataset, while the second equation has no such restriction. Typically 
 in a neural network, the second equation becomes of the form y = w1x + w0b (where b is the bias term, which can be 
 turned on and off by appropriate weight on w0)
-Read more : 
-** http://stats.stackexchange.com/questions/185911/why-are-bias-nodes-used-in-neural-networks **
 
-2) Sigmoid functions add the non-linearity in our network. Why do we need non-linearity anyway?
+Read more : 
+
+*http://stats.stackexchange.com/questions/185911/why-are-bias-nodes-used-in-neural-networks*
+
+2)Sigmoid functions add the non-linearity in our network. Why do we need non-linearity anyway?
+
 In one line : "no matter how many layers would behave just like a single perceptron (because linear functions 
 added together just give you a linear function)" 
-Read more :
-**http://stackoverflow.com/a/9783865**
 
-3) Great Explanation about Backpropogation:
+Read more :
+
+*http://stackoverflow.com/a/9783865*
+
+3)Great Explanation about Backpropogation:
+
 Here is a great explanation about the backpropagation algorithm that I found helpful to get some intuition.
 Please read it at your leisure and don't worry if you don't understand it completely. As the author says you 
 get finer appreciation for the algorithm over many days and weeks :)
 
-http://neuralnetworksanddeeplearning.com/chap2.html
+*http://neuralnetworksanddeeplearning.com/chap2.html*
 
-4) Hyperparameters: 
+4)Hyperparameters: 
+
 4a) The number of epochs is chosen such the network is trained well enough to accurately make predictions but is not 
 overfitting to the training data.
 
-Image of Result:
+![loss](https://cloud.githubusercontent.com/assets/15040734/22854061/84013ebe-f08b-11e6-8a5f-ce7186816b6e.jpg)
 
 I found out that I don't really need to perform 5000 epochs; I could have stopped earlier
 
@@ -77,13 +87,15 @@ The number of nodes is fairly open; if validation loss is low, it should meet sp
 and enough that the network can generalize, so probably at least 8. A good rule of thumb is the half way in between the number of input and output units.
 
 There's a good answer here for how to decide the number of nodes in the hidden layer.
+
 https://www.quora.com/How-do-I-decide-the-number-of-nodes-in-a-hidden-layer-of-a-neural-network
 
-4c) The learning rate is chosen such that the network successfully converges, but is still time efficient.
+4c)The learning rate is chosen such that the network successfully converges, but is still time efficient.
 
 A small learning rate makes the network take a longer time to train. A large learning rate may make the network not converge.
 
 Effect of learning rate on Gradient descent:
+
 http://blog.datumbox.com/tuning-the-learning-rate-in-gradient-descent/
 
 Finding a good learning rate is more of an art than science. Choice of 0.01 for learning rate seems reasonable.
@@ -93,53 +105,45 @@ Finding a good learning rate is more of an art than science. Choice of 0.01 for 
 
 The final predictions were good for most of the part except for the period of Dec-21 to Dec-27
 
-Result Image
+![predictions](https://cloud.githubusercontent.com/assets/15040734/22854062/8401a08e-f08b-11e6-8de4-82831143cd2c.jpg)
 
 So the possible reason could be : Our training dataset has less examples for holidays, and that's why our model could not predict well for these days.
 
 This is the correct intuition. It can be solidified more by looking at this graph:
 
-Image
+![data](https://cloud.githubusercontent.com/assets/15040734/22854063/8401cadc-f08b-11e6-91c6-086d5830e8c6.jpg)
 
-The 'cnt' variable shows two different regimes (one for the rest of the year) and (one for the last ten days of the year.) Notice also that we took away the
- last 80 days of the data as validation and test data. Thus the model has only one dec period to learn from. Is that enough data to learn that the demand 
-drops off in December? However it has a lot of monthly data that is pretty much cyclical, so it can figure out that demand is high on weekdays or on a Monday etc. 
-since it has enough of that data. It just doesn't have enough data to figure out the 'annual' patterns.
+The 'cnt' variable shows two different regimes (one for the rest of the year) and (one for the last ten days of the year.) Notice also that we took away the last 80 days of the data as validation and test data. Thus the model has only one dec period to learn from. Is that enough data to learn that the demand drops off in December? However it has a lot of monthly data that is pretty much cyclical, so it can figure out that demand is high on weekdays or on a Monday etc. since it has enough of that data. It just doesn't have enough data to figure out the 'annual' patterns.
 
 ===============================================================================
 
 ***One More Question : what is the tradeoff between the no. of layers and no of neurons in each layer ? What should we prefer ?***
+
 Answer given by my reviewer : 
-Also regarding the tradeoff, I am not sure about the answer, but I think its false dichotomy. I wasn't aware if someone 
-was rationing out the hidden nodes :wink: Why couldn't you use both, A large number of hidden nodes and a large number of layers?
- In general Neural Networks are very powerful and it would be very uncommon to see a Neural Network with multiple layers for a
- simple problem. Further because of the properties of the sigmoid the weight updates (and the errors) in a Neural network diminish
- as they are back-propagated though multiple layers. This is called as vanishing gradient problem 
-(https://en.wikipedia.org/wiki/Vanishing_gradient_problem) and hence a network with more layers usually is harder to train than
- one with just one layer but a lot of Neurons. But a Neural Network with many layers learns different attributes of the data in each 
-layer (and hence ends up being more powerful) I hope that added some color to the problem for you?
+
+Also regarding the tradeoff, I am not sure about the answer, but I think its false dichotomy. I wasn't aware if someone was rationing out the hidden nodes :wink: Why couldn't you use both, A large number of hidden nodes and a large number of layers? In general Neural Networks are very powerful and it would be very uncommon to see a Neural Network with multiple layers for a simple problem. Further because of the properties of the sigmoid the weight updates (and the errors) in a Neural network diminish as they are back-propagated though multiple layers. This is called as vanishing gradient problem (https://en.wikipedia.org/wiki/Vanishing_gradient_problem) and hence a network with more layers usually is harder to train than one with just one layer but a lot of Neurons. But a Neural Network with many layers learns different attributes of the data in each layer (and hence ends up being more powerful) I hope that added some color to the problem for you?
 
 ==============================================================================
-1) To Create a new conda environment:
+
+1)To Create a new conda environment:
 
 conda create --name dipsNN python=3
-============================
 
-2) Enter the environment:
+
+2)Enter the environment:
 
 Mac/Linux: >> source activate dipsNN
-Windows: >> activate dipsNN
-===========================
 
-3) Ensure you have numpy, matplotlib, pandas, and jupyter notebook installed by doing the following:
+Windows: >> activate dipsNN
+
+
+3)Ensure you have numpy, matplotlib, pandas, and jupyter notebook installed by doing the following:
 
 conda install numpy matplotlib pandas jupyter notebook
-=========================================
 
-4) Run the following to open up the notebook:
+4)Run the following to open up the notebook:
 
 jupyter notebook dipsNN-my-first-neural-network.ipynb
-=========================================
 
 ====================================================================
 ##Special Thanks to the reviewer of the Udacity Team for his guidance and all his resourcefull, and in depth reviews
