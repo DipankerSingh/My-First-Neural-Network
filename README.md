@@ -145,7 +145,4 @@ conda install numpy matplotlib pandas jupyter notebook
 
 jupyter notebook dipsNN-my-first-neural-network.ipynb
 
-====================================================================
-##Special Thanks to the reviewer of the Udacity Team for his guidance and all his resourcefull, and in depth reviews
-====================================================================
-
+## Special Thanks to the reviewer of the Udacity Team for his guidance and all his resourcefull, and in depth reviews
